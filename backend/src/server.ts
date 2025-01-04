@@ -7,10 +7,16 @@ import foodRouter from './routers/food.router';
 import userRouter from './routers/user.router';
 import orderRouter from './routers/order.router';
 import { dbConnect } from './configs/database.config';
+import mongoose from 'mongoose';
 dbConnect();
+// mongoose.connect('mongodb+srv://kalyan:Kalyan123*@cluster0.3vdqi4q.mongodb.net/');
 
 const app = express();
-app.use(express.json());
+// Middleware to parse incoming JSON requests
+app.use(express.json()); // Parses application/json bodies
+
+// Middleware to parse URL-encoded data (e.g., form submissions)
+app.use(express.urlencoded({ extended: true }));
 app.use(cors({
     credentials:true,
     origin:["http://localhost:4200"]
